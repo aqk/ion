@@ -19,6 +19,7 @@ elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   msg "Running Linux setup"
   #docker pull mesonbuild/bionic
   #pip install --user meson
+  sudo apt-get -y install ninja-build
   pyenv global 3.8.1
   pip3 install meson
 fi
