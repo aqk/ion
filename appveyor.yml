@@ -1,0 +1,43 @@
+
+matrix:
+  fast_finish: true # If any job fails, stop the build
+
+
+image: Visual Studio 2017
+
+environment:
+  matrix:
+    - arch: x86
+      compiler: msvc2015
+    - arch: x64
+      compiler: msvc2015
+    - arch: x86
+      compiler: msvc2017
+    - arch: x64
+      compiler: msvc2017
+
+platform:
+  - x64
+
+install:
+  - set ROOT_DIRECTORY=%CD%
+  # Set paths to dependencies (based on architecture)
+  - cmd: if %arch%==x86 (set PYTHON_ROOT=C:\python37) else (set PYTHON_ROOT=C:\python37-x64)
+  # Print out dependency paths
+  - cmd: echo Using Python at %PYTHON_ROOT%
+  # Add necessary paths to PATH variable
+  - cmd: set PATH=%cd%;%PYTHON_ROOT%;%PYTHON_ROOT%\Scripts;%PATH%
+  # Install meson and ninja
+  - cmd: pip install ninja meson
+  # Set up the build environment
+  - cmd: if %compiler%==msvc2015 ( call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %arch% )
+  - cmd: if %compiler%==msvc2017 ( call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %arch% )
+
+build_script:
+  - cmd: echo Building on %arch% with %compiler%
+  - cmd: meson --backend=ninja bin
+  - cmd: ninja -C bin
+
+test_script:
+  - cd %ROOT_DIRECTORY%\bin
+  - src\ion.exe
