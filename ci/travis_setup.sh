@@ -19,7 +19,7 @@ elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   msg "Running Linux setup"
   #docker pull mesonbuild/bionic
   #pip install --user meson
-  pyenv global 3.6.9
+  pyenv global 3.8.1
   python3 get-pip.py
   pip3 install meson
 fi
