@@ -1,0 +1,1 @@
+executable('ion', 'ion.c')
