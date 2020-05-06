@@ -4,6 +4,10 @@ set -e
 
 msg() { echo -e "\x1b[1;32mINFO:  \x1b[37m$*\x1b[0m"; }
 
+python --version
+
+pyenv versions
+
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   msg "Running OSX setup"
   brew update
@@ -15,6 +19,7 @@ elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   msg "Running Linux setup"
   #docker pull mesonbuild/bionic
   #pip install --user meson
+  pyenv global 3.6.9
   python3 get-pip.py
   pip3 install meson
 fi
