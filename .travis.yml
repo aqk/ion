@@ -1,0 +1,24 @@
+os:
+  - linux
+  - osx
+
+dist: bionic
+
+#branches:
+#  only:
+#    - master
+
+services:
+  - docker
+
+language:
+  - cpp
+
+compiler:
+  - gcc
+
+before_install:
+  - ./ci/travis_setup.sh
+
+script:
+  - ./ci/travis_build.sh
