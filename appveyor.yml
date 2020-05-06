@@ -20,6 +20,7 @@ platform:
   - x64
 
 install:
+  - set ROOT_DIRECTORY=%CD%
   # Set paths to dependencies (based on architecture)
   - cmd: if %arch%==x86 (set PYTHON_ROOT=C:\python37) else (set PYTHON_ROOT=C:\python37-x64)
   # Print out dependency paths
@@ -39,4 +40,4 @@ build_script:
 
 test_script:
   #- cmd: ninja -C bin test
-  - cmd: bin/ion
+  - cmd: %ROOT_DIRECTORY%\ion
