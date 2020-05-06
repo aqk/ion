@@ -39,5 +39,5 @@ build_script:
   - cmd: ninja -C bin
 
 test_script:
-  - cd %ROOT_DIRECTORY%
+  - cd %ROOT_DIRECTORY%\bin
   - ion.exe
