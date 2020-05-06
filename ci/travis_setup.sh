@@ -14,7 +14,9 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   msg "Running Linux setup"
   #docker pull mesonbuild/bionic
-  pip install --user meson
+  #pip install --user meson
+  python3 get-pip.py
+  pip3 install meson
 fi
 
 msg "Setup finished"
