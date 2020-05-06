@@ -8,9 +8,6 @@ dist: bionic
 #  only:
 #    - master
 
-services:
-  - docker
-
 language:
   - cpp
 
