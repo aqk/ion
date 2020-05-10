@@ -10,8 +10,9 @@ pyenv versions
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   msg "Running OSX setup"
-  brew update
-  brew install meson ninja
+  #brew update
+  export HOMEBREW_NO_INSTALL_CLEANUP=1
+  brew install meson@0.54.1 ninja
   if [[ "$MESON_ARGS" =~ .*unity=on.* ]]; then
     which pkg-config || brew install pkg-config
   fi
